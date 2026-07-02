@@ -1,0 +1,40 @@
+# SENSE pilot configuration
+# Every run reads this file; results without a config don't exist.
+
+data:
+  source: terramesh               # TerraMesh val split (TerraMind's own family — generator-favorable)
+  hf_path: "https://huggingface.co/datasets/ibm-esa-geospatial/TerraMesh/resolve/main/"
+  local_dir: "data/terramesh"     # populated before GPU jobs; compute nodes must not need network
+  split: val
+  modalities: [S2L2A, S1GRD, DEM]
+  n_tiles: 50
+  require_water_rich: true        # include coastal / river / delta scenes
+  patch_size: 224
+
+model:
+  name: terramind_v1_base_generate
+  input_modalities: [S2L2A]
+  output_modalities: [S1GRD]
+  timesteps: 10
+  standardize: true
+  device: cuda
+
+metrics:
+  # values below marked VERIFY are locked by src/inspect_sample.py output
+  s2_band_indices: {green: 2, red: 3, nir: 7}   # VERIFY against inspect_sample.py
+  s1_units: dB                                   # VERIFY (negative values => dB => 10**(db/10) before ENL)
+  ndwi_water_threshold: 0.0                      # McFeeters default
+  twi_threshold: calibrated                      # via calibrate_twi_threshold(), 5th pct of real-water TWI
+  js_bins: 64
+
+# PRE-REGISTERED DECISION RULE (written before any results were seen):
+# The physical-fidelity gap is CONFIRMED iff generated-vs-real scores fall
+# clearly outside the real-vs-real range (>= 3x the real-vs-real median,
+# or entirely outside its spread) on AT LEAST TWO metric families
+# (terrain violation, spectral JS, ENL).
+# If not confirmed: reframe toward cloud-gap imputation before the semester.
+decision_rule:
+  factor_over_real_median: 3.0
+  min_metric_families: 2
+
+seed: 0

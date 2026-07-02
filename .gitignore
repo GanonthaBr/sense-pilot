@@ -1,3 +1,29 @@
+# data & model weights — never commit
 outputs/
+data/
 *.pt
+*.pth
+*.zarr
+*.zarr.zip
+*.tar
+*.tif
+*.tiff
+*.npy
+*.npz
+
+# hf / caches
+.huggingface/
 __pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# env
+envs/
+*.egg-info/
+
+# downloaded third-party loader (re-fetched via wget, keeps repo clean)
+src/terramesh.py
+
+# slurm logs
+slurm-*.out
+*.log
