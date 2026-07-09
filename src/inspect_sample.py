@@ -21,9 +21,9 @@ import numpy as np
 
 try:
     from terramesh import build_terramesh_dataset
-except ImportError:
+except ImportError as e:
     sys.exit(
-        "Could not import terramesh.py — download it first:\n"
+        f"Import failed: {e}\n(If terramesh.py exists, the failure is a MISSING DEPENDENCY inside it — check the env is terramind311.)\n"
         "  wget https://huggingface.co/datasets/ibm-esa-geospatial/TerraMesh/resolve/main/terramesh.py -P src/\n"
         "and run this script from the folder that contains it (or add src/ to PYTHONPATH)."
     )
@@ -77,7 +77,7 @@ def main():
         modalities=MODALITIES,
         split="val",
         shuffle=False,       # deterministic: same first sample every run
-        batch_size=1,     # raw samples, no batching
+        batch_size=1,        # loader requires an int
     )
 
     print("Pulling the first sample...")
