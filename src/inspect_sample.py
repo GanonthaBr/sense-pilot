@@ -77,7 +77,7 @@ def main():
         modalities=MODALITIES,
         split="val",
         shuffle=False,       # deterministic: same first sample every run
-        batch_size=None,     # raw samples, no batching
+        batch_size=1,     # raw samples, no batching
     )
 
     print("Pulling the first sample...")
