@@ -1,4 +1,4 @@
-# Known-good stack resolved on Bridges-2 (Python 3.11, CUDA driver 12.6, cu124 wheels).
+# Known-good stack resolved on Bridges-2 (Python 3.11, CUDA driver 12.6, cu124 wheels)
 # torch is installed separately from the cu124 index — see README.
 # After any change, regenerate the frozen lockfile on the cluster:
 #   pip freeze > requirements.lock.txt
