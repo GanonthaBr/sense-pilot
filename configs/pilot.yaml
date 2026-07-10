@@ -3,7 +3,7 @@
 
 data:
   source: terramesh               # TerraMesh val split (TerraMind's own family — generator-favorable)
-  hf_path: "https://huggingface.co/datasets/ibm-esa-geospatial/TerraMesh/resolve/main/"
+  hf_path: "data/terramesh" # hf_path: "https://huggingface.co/datasets/ibm-esa-geospatial/TerraMesh/resolve/main/"
   local_dir: "data/terramesh"     # populated before GPU jobs; compute nodes must not need network
   split: val
   modalities: [S2L2A, S1GRD, DEM]
