@@ -1,0 +1,12 @@
+SENSE pilot summary — 4 tiles, TWI thr 4.204
+
+metric                      real   generated    shuffled
+enl_vv                    0.2261      4.8363      0.2261
+                    ^ generated outside real range (factor 3.0)
+js_vv                     0.0476      0.1493      0.0476
+                    ^ generated outside real range (factor 3.0)
+terrain_violation         0.0171      0.0000      0.0415
+water_iou                 0.0067      0.0000      0.0000
+                    ^ generated outside real range (factor 3.0)
+
+GAP CONFIRMED — 3 metric families exceed the pre-registered threshold (need >= 2).
