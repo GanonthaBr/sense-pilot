@@ -1,5 +1,4 @@
 # data & model weights — never commit
-outputs/
 data/
 *.pt
 *.pth
